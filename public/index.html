@@ -1,45 +1,19 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>Boxe 3D Online</title>
-<link rel="stylesheet" href="/styles.css"/></head>
+<!doctype html>
+<html lang="pt-BR">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Boxing Sim Multiplayer</title>
+<link rel="stylesheet" href="/styles.css"></head>
 <body>
   <div class="ui">
-    <div class="card">
-      <h1>🥊 Boxe 3D Online</h1>
-      <div id="auth">
-        <div class="tabs">
-          <button class="tab active" data-tab="login">Entrar</button>
-          <button class="tab" data-tab="signup">Criar Conta</button>
-        </div>
-        <div class="panel" id="panel-login">
-          <input id="login-email" placeholder="Email" type="email"/>
-          <input id="login-pass" placeholder="Senha" type="password"/>
-          <button id="btn-login">Entrar</button>
-        </div>
-        <div class="panel hidden" id="panel-signup">
-          <input id="signup-nick" placeholder="Apelido (opcional)"/>
-          <input id="signup-email" placeholder="Email" type="email"/>
-          <input id="signup-pass" placeholder="Senha" type="password"/>
-          <button id="btn-signup">Criar Conta</button>
-        </div>
-        <div class="info small">Plano gratuito: jogar online, velocidade normal.<br/>Plano pago (R$ 25,00 / US$ 4.62): super velocidade e trocar skin/luvas.</div>
-      </div>
-      <div id="user-area" class="hidden">
-        <div class="row"><span id="user-label"></span><span class="tag" id="plan-label"></span></div>
-        <div class="row">
-          <button id="btn-mock-brl">Assinar (R$ 25,00) — Mock</button>
-          <button id="btn-mock-usd">Assinar (US$ 4.62) — Mock</button>
-          <button id="btn-logout">Sair</button>
-        </div>
-        <div id="cosmetics" class="row hidden">
-          <select id="skin-select"><option value="default">Skin Padrão</option><option value="red">Vermelha</option><option value="blue">Azul</option><option value="gold">Dourada</option></select>
-          <select id="gloves-select"><option value="default">Luva Padrão</option><option value="flame">Chamas</option><option value="ice">Gelo</option><option value="shadow">Sombra</option></select>
-          <button id="btn-apply-cosmetics">Aplicar</button>
-        </div>
-      </div>
+    <h1>🥊 Boxing Sim Multiplayer</h1>
+    <p>Abra duas abas para testar — Three.js + Socket.IO.</p>
+    <div id="login">
+      <input id="nick" placeholder="Apelido (opcional)"/><button id="join">Entrar</button>
+    </div>
+    <div id="info" style="display:none">
+      <span id="me"></span> <span id="status"></span>
     </div>
   </div>
   <canvas id="game"></canvas>
-  <script src="/socket.io/socket.io.js"></script>
-  <script type="module" src="/js/main.js"></script>
+  <script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
+  <script type="module" src="/client.js"></script>
 </body></html>

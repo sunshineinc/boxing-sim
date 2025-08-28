@@ -1,11 +1,5 @@
-# Boxe 3D Online — Build Windows-friendly
+Boxing Sim Multiplayer — ready for Render deployment.
 
-Clone/descompacte, depois:
-
-1. Abra o prompt na pasta do projeto.
-2. Rode `run-dev-windows.bat` (ou manualmente: `copy .env.sample .env` e `npx cross-env NODE_ENV=development node server.js`).
-3. Acesse http://localhost:3000
-
-Pagamento mock: /api/payments/mock-confirm (BRL ou USD).
-
-Controles: WASD/Setas, Espaço (soco), Shift (super velocidade para plano pago).
+Push this repo to your GitHub (sunshineinc/boxing-sim-multiplayer) and create a Render Web Service.
+Build command: npm install
+Start command: node server.js

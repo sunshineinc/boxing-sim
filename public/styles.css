@@ -1,7 +1,4 @@
-*{box-sizing:border-box}body{margin:0;background:#0b0e13;color:#eef}#game{position:fixed;inset:0}
-.ui{position:fixed;top:16px;left:16px;z-index:2}.card{background:#121826cc;border:1px solid #22314a;padding:12px 14px;border-radius:14px;backdrop-filter: blur(6px);min-width:300px}
-h1{font-size:20px;margin:0 0 8px}.row{display:flex;gap:8px;align-items:center;margin-top:8px}.tag{background:#24344f;color:#9ed;border-radius:10px;padding:2px 8px;font-size:12px}
-.tabs{display:flex;gap:6px;margin-bottom:8px}.tab{background:#1a2436;border:1px solid #2c3e60;border-radius:8px;color:#cfe;padding:6px 10px;cursor:pointer}.tab.active{outline:2px solid #4db}
-.panel{display:flex;flex-direction:column;gap:6px}.hidden{display:none}.small{font-size:12px;opacity:.8}
-input,select,button{background:#0e1522;border:1px solid #2d4166;color:#eef;padding:8px 10px;border-radius:10px}
-button{cursor:pointer}
+body{margin:0;font-family:Arial,Helvetica,sans-serif;background:#0b0e13;color:#eef}
+#game{position:fixed;inset:0}
+.ui{position:fixed;left:16px;top:16px;z-index:2;background:rgba(18,24,38,0.9);padding:12px;border-radius:8px;border:1px solid #233}
+input,button{padding:8px;border-radius:6px;border:1px solid #334;background:#061024;color:#eef}
