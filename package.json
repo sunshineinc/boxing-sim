@@ -1,18 +1,12 @@
 {
-  "name": "boxing-sim-updated",
+  "name": "boxing-sim",
   "version": "1.0.0",
   "main": "server.js",
-  "type": "module",
   "scripts": {
     "start": "node server.js"
   },
   "dependencies": {
     "express": "^4.18.2",
-    "socket.io": "^4.7.5",
-    "cors": "^2.8.5",
-    "dotenv": "^16.4.5",
-    "bcryptjs": "^2.4.3",
-    "jsonwebtoken": "^9.0.2",
-    "uuid": "^9.0.1"
+    "socket.io": "^4.7.2"
   }
 }
