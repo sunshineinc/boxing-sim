@@ -1,6 +1,7 @@
 import * as THREE from 'https://unpkg.com/three@0.160.0/build/three.module.js';
 
 let socket = null; // socket só inicializa após login/signup
+let inLobby = false; // flag para processar eventos somente quando no lobby
 
 // UI elements
 const centerCard = document.getElementById('center');
@@ -27,7 +28,7 @@ const canvas = document.getElementById('game');
 
 let token = localStorage.getItem('token');
 let myNick = null;
-let inLobby = false;
+let pendingInviteFrom = null;
 
 // Tabs
 tabLogin.onclick = ()=>{ tabLogin.classList.add('active'); tabSignup.classList.remove('active'); loginPanel.classList.remove('hidden'); signupPanel.classList.add('hidden'); }
@@ -60,17 +61,16 @@ document.getElementById('btn-toggle-join').onclick = ()=>{
   else{ socket.emit('lobby:join', { token, nick: myNick }); inLobby=true; document.getElementById('btn-toggle-join').textContent='Sair do Lobby'; }
 };
 
-let pendingInviteFrom = null;
 inviteAccept.onclick = ()=>{ if(pendingInviteFrom){ socket.emit('invite:respond',{ fromSocketId: pendingInviteFrom, accept:true }); inviteModal.classList.add('hidden'); pendingInviteFrom=null; startFightUI(); } };
 inviteReject.onclick = ()=>{ if(pendingInviteFrom){ socket.emit('invite:respond',{ fromSocketId: pendingInviteFrom, accept:false }); inviteModal.classList.add('hidden'); pendingInviteFrom=null; } };
 
-// start lobby UI
 async function startLobby(){
     // criar conexão socket aqui, só depois do login/signup
     socket = io();
 
     // agora registre todos os handlers do socket
     socket.on('lobby:update', (list)=>{
+        if(!inLobby) return;
         playersList.innerHTML = '';
         list.forEach(p=>{
             const d = document.createElement('div');
@@ -81,6 +81,7 @@ async function startLobby(){
     });
 
     socket.on('ads:update', (ads)=>{
+        if(!inLobby) return;
         adsArea.innerHTML = '';
         ads.forEach(ad=>{
             const el = document.createElement('div');
@@ -90,14 +91,16 @@ async function startLobby(){
     });
 
     socket.on('invite:received', ({ fromSocketId, fromNick })=>{
+        if(!inLobby) return;
         pendingInviteFrom = fromSocketId;
         inviteText.textContent = fromNick + ' te convidou para uma luta! Aceitar?';
         inviteModal.classList.remove('hidden');
     });
 
-    socket.on('invite:rejected', ({ by })=> alert('Convite rejeitado por '+by));
+    socket.on('invite:rejected', ({ by })=>{ if(!inLobby) return; alert('Convite rejeitado por '+by); });
 
     socket.on('match:found', ({ opponent, opponentSocket })=>{
+      if(!inLobby) return;
       if(confirm('Match encontrado com '+opponent+' — aceitar?')){
         socket.emit('invite:respond', { fromSocketId: opponentSocket, accept:true });
         startFightUI();
@@ -107,11 +110,13 @@ async function startLobby(){
     });
 
     socket.on('fight:start', ({ room, players })=>{
+      if(!inLobby) return;
       startFightUI(players);
     });
 
     // entrar no lobby
     socket.emit('lobby:join', { token, nick: myNick });
+    inLobby = true;
 
     // UI
     document.getElementById('auth-forms').classList.add('hidden');
@@ -121,6 +126,3 @@ async function startLobby(){
 
     startGame();
 }
-
-// resto do código Three.js permanece igual (copiar de app.js anterior)
-// ... você manteria as funções animate(), startGame(), etc.
