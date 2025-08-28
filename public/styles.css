@@ -1,13 +1,25 @@
-*{box-sizing:border-box}body{margin:0;font-family:Inter,Arial,sans-serif;background:#081020;color:#eef;height:100vh}
-.center-card{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);background:rgba(10,16,26,0.95);padding:18px;border-radius:10px;border:1px solid #233;min-width:320px;text-align:center}
-.hidden{display:none}
-input,button{padding:8px;margin:6px;border-radius:8px;border:1px solid #334;background:#061224;color:#eef}
-.row{display:flex;gap:8px;justify-content:center;margin-top:8px}
-.small{font-size:12px;color:#bcd;opacity:.9;margin-top:8px}
-#ads-area{margin:8px 0;padding:8px;border:1px dashed #334;border-radius:8px;background:#020815;color:#9df}
-#players-list{max-height:120px;overflow:auto;text-align:left;margin-top:8px}
-.modal{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.6)}
-.modal-content{background:#091022;padding:14px;border-radius:10px;border:1px solid #334}
-#game{position:fixed;inset:0;z-index:1}
-#user-info{margin-bottom:8px;text-align:left}
-.player-label{font-size:13px;background:#0009;padding:4px;border-radius:6px;border:1px solid #334}
+body {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  background: #111;
+  color: #fff;
+}
+
+.screen {
+  display: none;
+  margin-top: 50px;
+}
+
+.screen.active {
+  display: block;
+}
+
+.hidden {
+  display: none;
+}
+
+button {
+  margin: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+}
