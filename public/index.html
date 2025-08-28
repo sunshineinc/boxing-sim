@@ -1,19 +1,41 @@
 <!doctype html>
 <html lang="pt-BR">
-<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Boxing Sim Multiplayer</title>
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Boxing Sim — Lobby</title>
 <link rel="stylesheet" href="/styles.css"></head>
 <body>
-  <div class="ui">
-    <h1>🥊 Boxing Sim Multiplayer</h1>
-    <p>Abra duas abas para testar — Three.js + Socket.IO.</p>
-    <div id="login">
-      <input id="nick" placeholder="Apelido (opcional)"/><button id="join">Entrar</button>
+  <div id="center" class="center-card">
+    <h1>🥊 Boxing Sim</h1>
+    <div id="auth-forms">
+      <div class="tabs">
+        <button id="tab-login" class="active">Entrar</button>
+        <button id="tab-signup">Criar Conta</button>
+      </div>
+      <div id="login-panel">
+        <input id="login-email" placeholder="Email"/><input id="login-pass" placeholder="Senha" type="password"/>
+        <button id="btn-login">Entrar</button>
+      </div>
+      <div id="signup-panel" class="hidden">
+        <input id="signup-nick" placeholder="Apelido"/><input id="signup-email" placeholder="Email"/><input id="signup-pass" placeholder="Senha" type="password"/>
+        <button id="btn-signup">Criar Conta</button>
+      </div>
+      <div class="small">Plano gratuito — Jogar no lobby.<br/>Planos: pago (super speed) e premium (pode publicar anúncios).</div>
     </div>
-    <div id="info" style="display:none">
-      <span id="me"></span> <span id="status"></span>
+    <div id="lobby-ui" class="hidden">
+      <div id="user-info">Você: <span id="me-nick"></span> <button id="btn-logout">Sair</button></div>
+      <div id="ads-area"></div>
+      <div id="players-list"></div>
+      <div class="row"><button id="btn-refresh">Atualizar</button><button id="btn-toggle-join">Entrar/Sair do Lobby</button></div>
     </div>
   </div>
-  <canvas id="game"></canvas>
-  <script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
-  <script type="module" src="/client.js"></script>
-</body></html>
+
+  <div id="invite-modal" class="modal hidden">
+    <div class="modal-content">
+      <p id="invite-text"></p>
+      <button id="invite-accept">Aceitar</button><button id="invite-reject">Rejeitar</button>
+    </div>
+  </div>
+
+  <canvas id="game" class="hidden"></canvas>
+  <script type="module" src="/js/app.js"></script>
+</body>
+</html>
